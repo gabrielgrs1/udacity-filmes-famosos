@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+    <ImageView
+            tools:src="@color/colorPrimary"
+            android:id="@+id/item_movie_banner_imageview"
+            android:layout_width="match_parent"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/shape_banner_round"
+            android:layout_height="200dp"/>
+
+    <TextView
+            tools:text="Winsplash"
+            android:id="@+id/item_movie_title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:background="@drawable/shape_release_date_round"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="5dp"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+
+    <TextView
+            tools:text="Lançamento: 2018"
+            android:id="@+id/item_movie_date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_release_date_round"
+            android:maxLines="1"
+            android:textSize="10sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingEnd="15dp"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"/>
+</LinearLayout>

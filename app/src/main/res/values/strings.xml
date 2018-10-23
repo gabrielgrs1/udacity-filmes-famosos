@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Filmes Famosos 1</string>
+
+    <!--Generic error-->
+    <string name="generic_no_connection_message">Verifique sua conexão com a internet e tente novamente!</string>
+    <string name="generic_server_error">Não foi possível se conectar ao servidor.</string>
+    <string name="generic_worng_user_password">Usuário e/ou senha incorreto!</string>
+    <string name="generic_unkown_error">Erro desconhecido!</string>
+    <string name="generic_log_error">Erro de servidor:</string>
+    <string name="generic_erro_title">Erro!</string>
+    <string name="generic_sorry_title">Desculpe</string>
+    <string name="generic_required_field">Campo obrigatório</string>
+    <string name="generic_invalid_mail">Email inválido</string>
+    <string name="generic_not_auth_error">"Usuário não autenticado"</string>
+
+
+    <!--Main-->
+    <string name="main_search_edittext">Search</string>
+    <string name="menu_ordenation_top_rated_item">Melhor Avaliados</string>
+    <string name="menu_ordenation_popularity_item">Popularidade</string>
+    <string name="detail_movie_sinopse_hint_textview">Sinopse: </string>
+    <string name="detail_movie_release_date_hint_textview">Data de lançamento:</string>
+
+</resources>
