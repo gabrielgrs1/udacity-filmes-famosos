@@ -17,7 +17,7 @@
 * [okHttpLogInterceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor)
 
 ## Como configurar o projeto
-  - Para configurar o projeto é necessário que você pegue uma API_KEY da api de filmes utilizada no projeto. Entre nesse link para criar uma conta e pegar um API_KEY
+  - Para configurar o projeto é necessário que você pegue uma API_KEY da api de filmes utilizada no projeto. [Clique aqui](https://www.themoviedb.org/account/signup) para criar uma conta e pegar um API_KEY: 
   - Após pegar a Key, você deve inseri-la conforme imagem abaixo
   <p align="center">
     <img src="https://i.imgur.com/aE5LzRw.png" alt="Configuration instructions"
