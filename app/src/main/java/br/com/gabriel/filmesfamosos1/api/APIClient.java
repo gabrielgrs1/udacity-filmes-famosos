@@ -60,9 +60,4 @@ public class APIClient {
         return retrofit;
     }
 
-    public OkHttpClient getOkHttpClient() {
-        return okHttpClient;
-    }
-
-
 }

@@ -1,7 +1,5 @@
 package br.com.gabriel.filmesfamosos1.ui.feed;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +10,7 @@ import android.widget.TextView;
 import br.com.gabriel.filmesfamosos1.BuildConfig;
 import br.com.gabriel.filmesfamosos1.R;
 import br.com.gabriel.filmesfamosos1.api.feed.FeedDto;
-import br.com.gabriel.filmesfamosos1.ui.detail.DetailActivity;
+import br.com.gabriel.filmesfamosos1.utils.formatter.StringFormatter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,9 +20,9 @@ import java.util.List;
 
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     private final List<FeedDto.Result> mMovieList;
-    private final Context mContext;
+    private final FeedActivity mContext;
 
-    public FeedAdapter(Context context, List<FeedDto.Result> mMovieList) {
+    FeedAdapter(FeedActivity context, List<FeedDto.Result> mMovieList) {
         this.mContext = context;
         this.mMovieList = mMovieList;
     }
@@ -33,8 +31,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View createdView = LayoutInflater.from(mContext).inflate(R.layout.item_movie, viewGroup, false);
-        ButterKnife.bind((FeedActivity) mContext);
-
+        ButterKnife.bind(mContext);
         return new ViewHolder(createdView);
     }
 
@@ -66,18 +63,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         }
 
         void bind(FeedDto.Result movie) {
-            mReleaseDateTextView.setText(configureDate(movie.getReleaseDate()));
+            mReleaseDateTextView.setText(StringFormatter.configureDateToYear(movie.getReleaseDate()));
             mTitleTextView.setText(movie.getTitle());
             setPosterImage(BuildConfig.IMAGE_URL + "/" + movie.getPosterPath().replace(".png", ".svg"));
-        }
-
-        private String configureDate(String date) {
-            //TODO Extrair para um helper de string
-            String[] dateArray = date.split("-");
-            date = dateArray[0].trim();
-            date = "Lançamento: " + date;
-
-            return date;
         }
 
         void setPosterImage(String posterUrl) {
@@ -89,11 +77,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
 
         @OnClick
         void onClick() {
-            Intent intent = new Intent(mContext, DetailActivity.class);
-            intent.putExtra("moviedId", mMovieList.get(getAdapterPosition()).getId());
-            mContext.startActivity(intent);
-
-            //TODO implementar exibição de detalhes
+            mContext.goToDetailBy(mMovieList.get(getAdapterPosition()));
         }
     }
 }

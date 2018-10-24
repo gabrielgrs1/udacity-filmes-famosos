@@ -1,7 +1,6 @@
 package br.com.gabriel.filmesfamosos1.api.feed;
 
 import android.support.annotation.NonNull;
-import br.com.gabriel.filmesfamosos1.BuildConfig;
 import br.com.gabriel.filmesfamosos1.MoviesApplication;
 import br.com.gabriel.filmesfamosos1.R;
 import br.com.gabriel.filmesfamosos1.api.APIClient;
@@ -11,99 +10,99 @@ import retrofit2.Response;
 
 public class FeedRepository implements IFeedService {
 
-    private FeedServiceListener feedListener;
-    private DetailResponse detailResponse;
-    private APIClient apiClient;
+    private final FeedServiceListener FEED_LISTENER;
+    private final DetailResponseListener DETAIL_RESPONSE_LISTENER;
+    private final APIClient API_CLIENT;
 
-    public FeedRepository(FeedServiceListener feedListener, DetailResponse detailResponse) {
-        this.apiClient = MoviesApplication.getInstance().getApiClient();
-        this.feedListener = feedListener;
-        this.detailResponse = detailResponse;
+    public FeedRepository(FeedServiceListener feedListener, DetailResponseListener DETAIL_RESPONSE_LISTENER) {
+        this.API_CLIENT = MoviesApplication.getInstance().getApiClient();
+        this.FEED_LISTENER = feedListener;
+        this.DETAIL_RESPONSE_LISTENER = DETAIL_RESPONSE_LISTENER;
     }
 
     @Override
     public void getMovieOrderByPopularity(int page) {
-        feedListener.startLoading();
+        FEED_LISTENER.startLoading();
 
-        FeedService feedService = this.apiClient.getRetrofit().create(FeedService.class);
+        FeedService feedService = this.API_CLIENT.getRetrofit().create(FeedService.class);
         Call<FeedDto> feedResponse = feedService.getMovieOrderByPopularity(page);
 
         feedResponse.enqueue(new Callback<FeedDto>() {
             @Override
             public void onResponse(@NonNull Call<FeedDto> call, @NonNull Response<FeedDto> response) {
-                feedListener.hideLoading();
+                FEED_LISTENER.hideLoading();
 
                 if (response.isSuccessful() && response.body() != null) {
-                    feedListener.response(response.body());
+                    FEED_LISTENER.response(response.body());
                 } else if (response.code() == 500) {
-                    feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
+                    FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
                 } else if (response.code() != 200) {
-                    feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_unkown_error));
+                    FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<FeedDto> call, @NonNull Throwable t) {
-                feedListener.hideLoading();
-                feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
+                FEED_LISTENER.hideLoading();
+                FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
             }
         });
     }
 
     @Override
     public void getMovieOrderByRating(int page) {
-        feedListener.startLoading();
+        FEED_LISTENER.startLoading();
 
-        FeedService feedService = this.apiClient.getRetrofit().create(FeedService.class);
+        FeedService feedService = this.API_CLIENT.getRetrofit().create(FeedService.class);
         Call<FeedDto> feedResponse = feedService.getMovieOrderByRating(page);
 
         feedResponse.enqueue(new Callback<FeedDto>() {
             @Override
             public void onResponse(@NonNull Call<FeedDto> call, @NonNull Response<FeedDto> response) {
-                feedListener.hideLoading();
+                FEED_LISTENER.hideLoading();
 
                 if (response.isSuccessful() && response.body() != null) {
-                    feedListener.response(response.body());
+                    FEED_LISTENER.response(response.body());
                 } else if (response.code() == 500) {
-                    feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
+                    FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
                 } else if (response.code() != 200) {
-                    feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_unkown_error));
+                    FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<FeedDto> call, @NonNull Throwable t) {
-                feedListener.hideLoading();
-                feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
+                FEED_LISTENER.hideLoading();
+                FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
             }
         });
     }
 
     @Override
     public void getMovieDetail(int id) {
-        feedListener.startLoading();
+        FEED_LISTENER.startLoading();
 
-        FeedService feedService = this.apiClient.getRetrofit().create(FeedService.class);
+        FeedService feedService = this.API_CLIENT.getRetrofit().create(FeedService.class);
         Call<DetailDto> feedResponse = feedService.getMovieDetail(id);
 
         feedResponse.enqueue(new Callback<DetailDto>() {
             @Override
             public void onResponse(@NonNull Call<DetailDto> call, @NonNull Response<DetailDto> response) {
-                feedListener.hideLoading();
+                FEED_LISTENER.hideLoading();
 
                 if (response.isSuccessful() && response.body() != null) {
-                    detailResponse.response(response.body());
+                    DETAIL_RESPONSE_LISTENER.response(response.body());
                 } else if (response.code() == 500) {
-                    feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
+                    FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
                 } else if (response.code() != 200) {
-                    feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_unkown_error));
+                    FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<DetailDto> call, @NonNull Throwable t) {
-                feedListener.hideLoading();
-                feedListener.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
+                FEED_LISTENER.hideLoading();
+                FEED_LISTENER.serverError(MoviesApplication.getInstance().getString(R.string.generic_server_error));
             }
         });
     }
@@ -118,7 +117,7 @@ public class FeedRepository implements IFeedService {
         void serverError(String message);
     }
 
-    public interface DetailResponse {
+    public interface DetailResponseListener {
         void response(DetailDto detailDto);
     }
 

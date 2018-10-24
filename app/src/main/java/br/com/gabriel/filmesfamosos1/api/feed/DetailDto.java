@@ -1,10 +1,12 @@
 package br.com.gabriel.filmesfamosos1.api.feed;
 
+import android.support.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class DetailDto {
+    @NonNull
     @Override
     public String toString() {
         return "DetailDto{" +

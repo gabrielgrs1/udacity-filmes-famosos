@@ -14,7 +14,8 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:background="@drawable/shape_banner_round"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:contentDescription="@string/detail_movie_banner_content_description_imageview"/>
 
     <TextView
             tools:text="Winsplash"
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape_release_date_round"
             android:maxLines="1"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:paddingStart="15dp"

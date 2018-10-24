@@ -37,7 +37,7 @@ public abstract class GenericActivity extends AppCompatActivity {
         return true;
     }
 
-    public abstract void setLayout();
+    protected abstract void setLayout();
 
-    public abstract void loadingMethods();
+    protected abstract void loadingMethods();
 }

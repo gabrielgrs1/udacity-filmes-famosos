@@ -1,24 +1,35 @@
 <resources>
-    <string name="app_name">Filmes Famosos 1</string>
+    <string name="app_name">Filmes Famosos</string>
 
     <!--Generic error-->
     <string name="generic_no_connection_message">Verifique sua conexão com a internet e tente novamente!</string>
     <string name="generic_server_error">Não foi possível se conectar ao servidor.</string>
-    <string name="generic_worng_user_password">Usuário e/ou senha incorreto!</string>
     <string name="generic_unkown_error">Erro desconhecido!</string>
-    <string name="generic_log_error">Erro de servidor:</string>
     <string name="generic_erro_title">Erro!</string>
-    <string name="generic_sorry_title">Desculpe</string>
-    <string name="generic_required_field">Campo obrigatório</string>
-    <string name="generic_invalid_mail">Email inválido</string>
-    <string name="generic_not_auth_error">"Usuário não autenticado"</string>
 
-
-    <!--Main-->
-    <string name="main_search_edittext">Search</string>
+    <!--Menu-->
     <string name="menu_ordenation_top_rated_item">Melhor Avaliados</string>
     <string name="menu_ordenation_popularity_item">Popularidade</string>
-    <string name="detail_movie_sinopse_hint_textview">Sinopse: </string>
+
+    <!--Detail-->
+    <string name="detail_movie_sinopse_hint_textview">Sinopse</string>
     <string name="detail_movie_release_date_hint_textview">Data de lançamento:</string>
+    <string name="detail_movie_user_rate_hint_textview">Avaliação dos usuários:</string>
+    <string name="detail_movie_banner_background_content_description_imageview">Banner detail background</string>
+
+    <!--Dialog-->
+    <string name="dialog_title_wait">Aguarde</string>
+    <string name="dialog_body_loading_movie_infos">Carregando informações do filme</string>
+    <string name="dialog_body_loading_movies">Carregando lista de filmes</string>
+
+    <!--Toolbar-->
+    <string name="toolbar_most_popular">Mais Populares</string>
+    <string name="toolbar_best_rated">Melhores Avaliados</string>
+
+    <!--Helpers-->
+    <string name="helper_overview_not_found">Esse filme não possui sinopse!</string>
+    <string name="helprer_release_date">Lançamento: </string>
+    <string name="detail_movie_banner_content_description_imageview">Movie banner detail</string>
+
 
 </resources>

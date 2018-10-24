@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface FeedService {
+interface FeedService {
 
     @GET("popular?api_key=" + BuildConfig.API_KEY + "&language=pt-BR")
     Call<FeedDto> getMovieOrderByPopularity(@Query("page") int page);

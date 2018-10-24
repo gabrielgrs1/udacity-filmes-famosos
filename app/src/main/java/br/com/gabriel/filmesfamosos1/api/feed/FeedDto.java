@@ -1,5 +1,6 @@
 package br.com.gabriel.filmesfamosos1.api.feed;
 
+import android.support.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -7,6 +8,7 @@ import java.util.List;
 
 public class FeedDto implements Serializable {
 
+    @NonNull
     @Override
     public String toString() {
         return "FeedDto{" +
@@ -58,7 +60,7 @@ public class FeedDto implements Serializable {
         this.results = results;
     }
 
-    public class Result {
+    public class Result implements Serializable{
 
         @SerializedName("vote_count")
         private Integer voteCount;

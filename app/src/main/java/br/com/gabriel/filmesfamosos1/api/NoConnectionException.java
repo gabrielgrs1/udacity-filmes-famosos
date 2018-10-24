@@ -5,7 +5,7 @@ import br.com.gabriel.filmesfamosos1.R;
 
 import java.io.IOException;
 
-public class NoConnectionException extends IOException {
+class NoConnectionException extends IOException {
 
     @Override
     public String getMessage() {
