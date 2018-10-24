@@ -21,5 +21,5 @@
   - Após pegar a Key, você deve inseri-la conforme imagem abaixo
   <p align="center">
     <img src="https://i.imgur.com/aE5LzRw.png" alt="Configuration instructions"
-         width="800" height="500">
+         width="1000" height="500">
   </p>
