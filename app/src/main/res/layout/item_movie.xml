@@ -8,7 +8,7 @@
         android:orientation="vertical">
 
     <ImageView
-            tools:src="@color/colorPrimary"
+            tools:src="@drawable/shape_banner_round"
             android:id="@+id/item_movie_banner_imageview"
             android:layout_width="match_parent"
             android:paddingTop="5dp"

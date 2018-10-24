@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
-public class DetailActivityListener extends GenericActivity implements FeedRepository.DetailResponseListener, FeedRepository.FeedServiceListener {
+public class DetailActivity extends GenericActivity implements FeedRepository.DetailResponseListener, FeedRepository.FeedServiceListener {
 
     private static final String MOVIE_KEY_BUNDLE = "movie";
     @BindView(R.id.detail_movie_banner_background_imageview)

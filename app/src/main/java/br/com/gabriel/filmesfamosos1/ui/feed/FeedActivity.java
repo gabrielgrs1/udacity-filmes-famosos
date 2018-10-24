@@ -17,7 +17,7 @@ import br.com.gabriel.filmesfamosos1.api.feed.DetailDto;
 import br.com.gabriel.filmesfamosos1.api.feed.FeedDto;
 import br.com.gabriel.filmesfamosos1.api.feed.FeedRepository;
 import br.com.gabriel.filmesfamosos1.ui.GenericActivity;
-import br.com.gabriel.filmesfamosos1.ui.detail.DetailActivityListener;
+import br.com.gabriel.filmesfamosos1.ui.detail.DetailActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -174,7 +174,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     }
 
     public void goToDetailBy(FeedDto.Result movie) {
-        Intent intent = new Intent(this, DetailActivityListener.class);
+        Intent intent = new Intent(this, DetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(MOVIE_KEY_BUNDLE, movie);
         intent.putExtras(bundle);
@@ -190,6 +190,10 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     }
 
     private void configureRefreshLayout() {
+        if (mMovieResultList != null) {
+            mMovieResultList.clear();
+        }
+
         mSwipeRefreshLayout.setOnRefreshListener(this::getMoviesByOrdenation);
 
         mSwipeRefreshLayout.setColorSchemeResources(

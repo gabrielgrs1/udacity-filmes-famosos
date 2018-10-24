@@ -18,13 +18,13 @@ android {
         debug {
             buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/movie/"'
             buildConfigField "String", "IMAGE_URL", '"http://image.tmdb.org/t/p/w185/"'
-            buildConfigField "String", "API_KEY", '"SUA API KEY AQUI"'
+            buildConfigField "String", "API_KEY", '"8473ba18ce192b1219c365e651ea4f8c"'
         }
 
         release {
             buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/movie/"'
             buildConfigField "String", "IMAGE_URL", '"http://image.tmdb.org/t/p/w185/"'
-            buildConfigField "String", "API_KEY", '"SUA API KEY AQUI"'
+            buildConfigField "String", "API_KEY", '"8473ba18ce192b1219c365e651ea4f8c"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -50,8 +50,6 @@ ext {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Android Support
     implementation "com.android.support:appcompat-v7:$supportVersion"

@@ -71,7 +71,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         void setPosterImage(String posterUrl) {
             Glide.with(mContext)
                     .load(posterUrl)
-                    .thumbnail(0.01f)
                     .into(mBannerImageView);
         }
 

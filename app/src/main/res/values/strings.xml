@@ -27,7 +27,7 @@
     <string name="toolbar_best_rated">Melhores Avaliados</string>
 
     <!--Helpers-->
-    <string name="helper_overview_not_found">Esse filme não possui sinopse!</string>
+    <string name="helper_overview_not_found">Sinopse do filme não disponível!</string>
     <string name="helprer_release_date">Lançamento: </string>
     <string name="detail_movie_banner_content_description_imageview">Movie banner detail</string>
 
