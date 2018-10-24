@@ -18,6 +18,7 @@ import br.com.gabriel.filmesfamosos1.utils.formatter.StringFormatter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.Objects;
 

@@ -13,8 +13,8 @@
 
     <!--Detail-->
     <string name="detail_movie_sinopse_hint_textview">Sinopse</string>
-    <string name="detail_movie_release_date_hint_textview">Data de lançamento:</string>
-    <string name="detail_movie_user_rate_hint_textview">Avaliação dos usuários:</string>
+    <string name="detail_movie_release_date_hint_textview">Data de lançamento</string>
+    <string name="detail_movie_user_rate_hint_textview">Avaliação dos usuários</string>
     <string name="detail_movie_banner_background_content_description_imageview">Banner detail background</string>
 
     <!--Dialog-->
@@ -28,7 +28,7 @@
 
     <!--Helpers-->
     <string name="helper_overview_not_found">Sinopse do filme não disponível!</string>
-    <string name="helprer_release_date">Lançamento: </string>
+    <string name="helper_release_date">Lançamento: </string>
     <string name="detail_movie_banner_content_description_imageview">Movie banner detail</string>
 
 

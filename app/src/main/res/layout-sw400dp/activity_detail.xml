@@ -70,17 +70,17 @@
 
         <TextView
                 tools:text="Avaliação dos usuários: "
-                android:layout_width="wrap_content"
+                android:layout_width="195dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:layout_marginEnd="10dp"
                 android:text="@string/detail_movie_user_rate_hint_textview"
                 android:layout_marginTop="23dp"
                 android:id="@+id/detail_movie_user_rate_hint_textview"
                 app:layout_constraintTop_toTopOf="@id/detail_movie_banner_imageview"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
                 tools:text="7.3"
