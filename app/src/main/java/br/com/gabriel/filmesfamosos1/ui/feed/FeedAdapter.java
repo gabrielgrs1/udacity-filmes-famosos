@@ -1,31 +1,31 @@
 package br.com.gabriel.filmesfamosos1.ui.feed;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import br.com.gabriel.filmesfamosos1.BuildConfig;
 import br.com.gabriel.filmesfamosos1.R;
-import br.com.gabriel.filmesfamosos1.api.feed.FeedDto;
+import br.com.gabriel.filmesfamosos1.api.domain.MovieDto;
 import br.com.gabriel.filmesfamosos1.utils.formatter.StringFormatter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
-    private final List<FeedDto.Result> mMovieList;
+    private final List<MovieDto.Result> mMovieList;
     private final FeedActivity mContext;
 
-    FeedAdapter(FeedActivity context, List<FeedDto.Result> mMovieList) {
+    FeedAdapter(FeedActivity context, List<MovieDto.Result> mMovieList) {
         this.mContext = context;
-        this.mMovieList = mMovieList;
+        this.mMovieList = mMovieList == null ? new ArrayList<>() : mMovieList;
     }
 
     @NonNull
@@ -63,7 +63,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(FeedDto.Result movie) {
+        void bind(MovieDto.Result movie) {
             mReleaseDateTextView.setText(StringFormatter.configureDateToYear(movie.getReleaseDate()));
             mTitleTextView.setText(movie.getTitle());
             setPosterImage(BuildConfig.IMAGE_URL + "/" + movie.getPosterPath().replace(".png", ".svg"));

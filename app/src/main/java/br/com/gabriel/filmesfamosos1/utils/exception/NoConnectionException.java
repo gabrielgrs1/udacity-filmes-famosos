@@ -1,11 +1,11 @@
-package br.com.gabriel.filmesfamosos1.api;
+package br.com.gabriel.filmesfamosos1.utils.exception;
 
-import br.com.gabriel.filmesfamosos1.MoviesApplication;
 import br.com.gabriel.filmesfamosos1.R;
+import br.com.gabriel.filmesfamosos1.application.MoviesApplication;
 
 import java.io.IOException;
 
-class NoConnectionException extends IOException {
+public class NoConnectionException extends IOException {
 
     @Override
     public String getMessage() {

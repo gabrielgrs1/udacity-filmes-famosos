@@ -8,21 +8,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.com.gabriel.filmesfamosos1.BuildConfig;
-import br.com.gabriel.filmesfamosos1.MoviesApplication;
 import br.com.gabriel.filmesfamosos1.R;
-import br.com.gabriel.filmesfamosos1.api.feed.DetailDto;
-import br.com.gabriel.filmesfamosos1.api.feed.FeedDto;
-import br.com.gabriel.filmesfamosos1.api.feed.FeedRepository;
+import br.com.gabriel.filmesfamosos1.api.CallbackApiService;
+import br.com.gabriel.filmesfamosos1.api.domain.MovieDetailDto;
+import br.com.gabriel.filmesfamosos1.api.domain.MovieDto;
+import br.com.gabriel.filmesfamosos1.api.repository.FeedRepository;
+import br.com.gabriel.filmesfamosos1.application.MoviesApplication;
 import br.com.gabriel.filmesfamosos1.ui.GenericActivity;
 import br.com.gabriel.filmesfamosos1.utils.formatter.StringFormatter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+import retrofit2.Response;
 
 import java.util.Objects;
 
-public class DetailActivity extends GenericActivity implements FeedRepository.DetailResponseListener, FeedRepository.FeedServiceListener {
+public class DetailActivity extends GenericActivity implements CallbackApiService {
 
     private static final String MOVIE_KEY_BUNDLE = "movie";
     @BindView(R.id.detail_movie_banner_background_imageview)
@@ -55,14 +56,13 @@ public class DetailActivity extends GenericActivity implements FeedRepository.De
     }
 
     @Override
-    public void response(DetailDto movie) {
-        setMovieDetail(movie);
+    public void onResponse(Response response) {
+        setMovieDetail((MovieDetailDto) response.body());
     }
 
-
     @Override
-    public void response(FeedDto feedDto) {
-
+    public void onError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -82,11 +82,6 @@ public class DetailActivity extends GenericActivity implements FeedRepository.De
     }
 
     @Override
-    public void serverError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -100,7 +95,7 @@ public class DetailActivity extends GenericActivity implements FeedRepository.De
     private void getMovieBundle() {
         Bundle bundle = getIntent().getExtras();
         if (checkInternet() && bundle != null) {
-            FeedDto.Result movie = (FeedDto.Result) bundle.getSerializable(MOVIE_KEY_BUNDLE);
+            MovieDto.Result movie = (MovieDto.Result) bundle.getSerializable(MOVIE_KEY_BUNDLE);
 
             if (movie != null) {
                 new FeedRepository(this, this).getMovieDetail(movie.getId());
@@ -108,12 +103,12 @@ public class DetailActivity extends GenericActivity implements FeedRepository.De
         }
     }
 
-    private void setMovieDetail(DetailDto movie) {
+    private void setMovieDetail(MovieDetailDto movie) {
         setMovieTextDetail(movie);
         setMovieImageDetail(movie);
     }
 
-    private void setMovieImageDetail(DetailDto movie) {
+    private void setMovieImageDetail(MovieDetailDto movie) {
         Glide.with(this)
                 .load(BuildConfig.IMAGE_URL + "/" + movie.getBackdropPath().replace(".png", ".svg"))
                 .into(mBannerBackgroundImageView);
@@ -125,7 +120,7 @@ public class DetailActivity extends GenericActivity implements FeedRepository.De
     }
 
     @SuppressLint("SetTextI18n")
-    private void setMovieTextDetail(DetailDto movie) {
+    private void setMovieTextDetail(MovieDetailDto movie) {
         Objects.requireNonNull(getSupportActionBar()).setTitle(movie.getTitle());
         mUserRateTextView.setText(Double.toString(movie.getVoteAverage()));
         mReleaseDateTextView.setText(StringFormatter.configureDate(movie.getReleaseDate()));

@@ -1,7 +1,7 @@
 package br.com.gabriel.filmesfamosos1.utils.formatter;
 
-import br.com.gabriel.filmesfamosos1.MoviesApplication;
 import br.com.gabriel.filmesfamosos1.R;
+import br.com.gabriel.filmesfamosos1.application.MoviesApplication;
 
 public class StringFormatter {
 

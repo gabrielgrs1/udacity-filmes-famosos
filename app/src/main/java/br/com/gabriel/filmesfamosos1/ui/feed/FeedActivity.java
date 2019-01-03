@@ -3,28 +3,29 @@ package br.com.gabriel.filmesfamosos1.ui.feed;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-import br.com.gabriel.filmesfamosos1.MoviesApplication;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import br.com.gabriel.filmesfamosos1.R;
-import br.com.gabriel.filmesfamosos1.api.feed.DetailDto;
-import br.com.gabriel.filmesfamosos1.api.feed.FeedDto;
-import br.com.gabriel.filmesfamosos1.api.feed.FeedRepository;
+import br.com.gabriel.filmesfamosos1.api.CallbackApiService;
+import br.com.gabriel.filmesfamosos1.api.domain.MovieDto;
+import br.com.gabriel.filmesfamosos1.api.repository.FeedRepository;
+import br.com.gabriel.filmesfamosos1.application.MoviesApplication;
 import br.com.gabriel.filmesfamosos1.ui.GenericActivity;
 import br.com.gabriel.filmesfamosos1.ui.detail.DetailActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Response;
 
 import java.util.List;
 import java.util.Objects;
 
-public class FeedActivity extends GenericActivity implements FeedRepository.FeedServiceListener, FeedRepository.DetailResponseListener, SwipeRefreshLayout.OnRefreshListener {
+public class FeedActivity extends GenericActivity implements CallbackApiService, SwipeRefreshLayout.OnRefreshListener {
 
 
     private static final String POPULARITY = "popularity";
@@ -38,7 +39,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private ProgressDialog progressDialog;
-    private List<FeedDto.Result> mMovieResultList;
+    private List<MovieDto.Result> mMovieResultList;
     private FeedAdapter mFeedAdapter;
     private int mPage = 0;
     private int mTotalPages = 1;
@@ -59,12 +60,17 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         configureToolbar();
     }
 
+    @Override
+    public void onResponse(Response response) {
+        if (response.body() instanceof MovieDto) {
+            mSwipeRefreshLayout.setRefreshing(false);
+            setRecyclerDataBy((MovieDto) response.body());
+        }
+    }
 
     @Override
-    public void response(FeedDto movie) {
-        mSwipeRefreshLayout.setRefreshing(false);
-
-        setRecyclerDataBy(movie);
+    public void onError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -85,15 +91,6 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         progressDialog.dismiss();
     }
 
-    @Override
-    public void serverError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void response(DetailDto detailDto) {
-
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -113,7 +110,6 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
                 getMoviesOrderByRating(1);
                 break;
         }
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -173,10 +169,10 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         }
     }
 
-    public void goToDetailBy(FeedDto.Result movie) {
+    public void goToDetailBy(MovieDto.Result movie) {
         Intent intent = new Intent(this, DetailActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(MOVIE_KEY_BUNDLE, movie);
+        bundle.putParcelable(MOVIE_KEY_BUNDLE, movie);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -205,7 +201,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         Objects.requireNonNull(getSupportActionBar()).setTitle(MoviesApplication.getInstance().getResources().getString(R.string.toolbar_most_popular));
     }
 
-    private void setRecyclerDataBy(FeedDto movie) {
+    private void setRecyclerDataBy(MovieDto movie) {
         if (mPage == 0) {
             mMovieResultList = movie.getResults();
             configureAdapter();
@@ -217,7 +213,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         configurePagesBy(movie);
     }
 
-    private void configurePagesBy(FeedDto movie) {
+    private void configurePagesBy(MovieDto movie) {
         mTotalPages = movie.getTotalPages();
         mPage = movie.getPage();
     }

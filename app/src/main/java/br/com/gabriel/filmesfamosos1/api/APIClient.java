@@ -1,7 +1,8 @@
 package br.com.gabriel.filmesfamosos1.api;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import br.com.gabriel.filmesfamosos1.utils.Utils;
+import br.com.gabriel.filmesfamosos1.utils.exception.NoConnectionException;
 import com.google.gson.Gson;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -50,7 +51,7 @@ public class APIClient {
     }
 
     private final Interceptor checkConnectionInterceptor = chain -> {
-        if (!Utils.isOnline()) {
+        if (Utils.isNotOnline()) {
             throw new NoConnectionException();
         }
         return chain.proceed(chain.request());

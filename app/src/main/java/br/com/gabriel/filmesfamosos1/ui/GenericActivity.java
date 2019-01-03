@@ -1,10 +1,9 @@
 package br.com.gabriel.filmesfamosos1.ui;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
-import br.com.gabriel.filmesfamosos1.MoviesApplication;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import br.com.gabriel.filmesfamosos1.R;
 import br.com.gabriel.filmesfamosos1.utils.Utils;
 
@@ -16,7 +15,7 @@ public abstract class GenericActivity extends AppCompatActivity {
         startMethods();
     }
 
-    protected void startMethods() {
+    private void startMethods() {
         setLayout();
         loadingMethods();
     }
@@ -29,8 +28,8 @@ public abstract class GenericActivity extends AppCompatActivity {
     }
 
     protected boolean checkInternet() {
-        if (!Utils.isOnline()) {
-            Toast.makeText(this, MoviesApplication.getInstance().getString(R.string.generic_erro_title), Toast.LENGTH_SHORT).show();
+        if (Utils.isNotOnline()) {
+            Toast.makeText(this, getString(R.string.generic_erro_title), Toast.LENGTH_SHORT).show();
             return false;
         }
 

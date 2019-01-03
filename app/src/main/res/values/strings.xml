@@ -5,7 +5,7 @@
     <string name="generic_no_connection_message">Verifique sua conexão com a internet e tente novamente!</string>
     <string name="generic_server_error">Não foi possível se conectar ao servidor.</string>
     <string name="generic_unkown_error">Erro desconhecido!</string>
-    <string name="generic_erro_title">Erro!</string>
+    <string name="generic_erro_title">Dispositivo sem conexão com servidor!</string>
 
     <!--Menu-->
     <string name="menu_ordenation_top_rated_item">Melhor Avaliados</string>

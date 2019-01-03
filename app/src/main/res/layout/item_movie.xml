@@ -8,13 +8,15 @@
         android:orientation="vertical">
 
     <ImageView
-            tools:src="@drawable/shape_banner_round"
             android:id="@+id/item_movie_banner_imageview"
-            android:layout_width="match_parent"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/shape_banner_round"
-            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/detail_movie_banner_content_description_imageview"/>
 
     <TextView

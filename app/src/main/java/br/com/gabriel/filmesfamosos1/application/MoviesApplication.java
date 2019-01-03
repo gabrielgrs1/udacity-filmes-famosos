@@ -1,7 +1,8 @@
-package br.com.gabriel.filmesfamosos1;
+package br.com.gabriel.filmesfamosos1.application;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
+import br.com.gabriel.filmesfamosos1.BuildConfig;
 import br.com.gabriel.filmesfamosos1.api.APIClient;
 
 public class MoviesApplication extends Application {
